@@ -17,8 +17,6 @@ import {
   Code,
   Briefcase,
   Calculator,
-  ChevronLeft,
-  ChevronRight,
   Phone,
   Mail,
   MapPin,
@@ -30,8 +28,13 @@ import {
   CheckCircle,
   Plus,
   Minus,
+  Users2,
+  Settings,
+  School,
+  UserCheck,
 } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import Link from "next/link"
 
 export default function InstitutoCadudaLanding() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -64,38 +67,218 @@ export default function InstitutoCadudaLanding() {
     {
       title: "Profissionalizantes",
       icon: Code,
-      courses: ["Desenvolvedor Web", "Social Media Pro", "Cuidador de Idosos", "Marketing Digital"],
-      color: "bg-[#0A4D8C]",
+      slug: "profissionalizantes",
+      courses: [
+        "OPERADOR DE COMPUTADOR",
+        "PROGRAMADOR MASTER",
+        "DESENVOLVEDOR WEB",
+        "GAMES CREATOR",
+        "PROJETISTA ALTO NÍVEL",
+        "VÍDEO CREATOR PROFISSIONAL",
+        "YOUTUBER",
+        "OPERADOR DE DRONE",
+        "DESIGNER GRÁFICO",
+        "SOCIAL MÉDIA PRO",
+        "VENDEDOR DIGITAL",
+        "INGLÊS FLUENTE",
+        "PROFESSOR DO FUTURO",
+        "CRIANÇAS DO FUTURO",
+        "MELHOR IDADE",
+        "LÍDER DO FUTURO",
+        "MESTRE EM EXCEL",
+        "AUXILIAR DE CONTÁBIL",
+        "AUXILIAR DE ESCRITÓRIO",
+        "ADMINISTRAÇÃO DE PESSOAL",
+        "SEGURANÇA DA SAÚDE",
+        "CUIDADOR DE IDOSOS",
+        "OPERADOR DE LOGÍSTICA",
+        "INGLÊS INTRODUTÓRIO",
+        "INGLÊS BÁSICO",
+        "INGLÊS INTERMEDIÁRIO",
+        "INGLÊS AVANÇADO",
+        "INGLÊS KIDS",
+        "INGLÊS PARA HOTELARIA E TURISMO",
+        "INGLÊS PARA NEGÓCIOS",
+        "INGLÊS PARA VIAGENS",
+      ],
+      color: "bg-[#2563eb]",
+      description: "Acelere sua carreira com cursos práticos de 6 a 12 meses",
     },
     {
       title: "Técnicos",
       icon: Briefcase,
-      courses: ["Técnico em Administração", "Logística", "Estética", "Informática"],
-      color: "bg-[#37AADD]",
+      slug: "tecnicos",
+      courses: [
+        "CURSO TÉCNICO EM ADMINISTRAÇÃO",
+        "CURSO TÉCNICO EM AGENTE COMUNITÁRIO DE SAÚDE",
+        "CURSO TÉCNICO EM AGRIMENSURA",
+        "CURSO TÉCNICO EM AGRONEGÓCIO",
+        "CURSO TÉCNICO EM ALIMENTAÇÃO ESCOLAR",
+        "CURSO TÉCNICO EM AUTOMAÇÃO INDUSTRIAL",
+        "CURSO TÉCNICO EM COMÉRCIO EXTERIOR",
+        "CURSO TÉCNICO EM CONTABILIDADE",
+        "CURSO TÉCNICO EM EDIFICAÇÕES",
+        "CURSO TÉCNICO EM ELETRÔNICA",
+        "CURSO TÉCNICO EM ELETROTÉCNICA",
+        "CURSO TÉCNICO EM ESTÉTICA",
+        "CURSO TÉCNICO EM FINANÇAS",
+        "CURSO TÉCNICO EM GUIA DE TURISMO (COMPLETO)",
+        "CURSO TÉCNICO EM GUIA DE TURISMO INTERNACIONAL",
+        "CURSO TÉCNICO EM GUIA DE TURISMO NACIONAL",
+        "CURSO TÉCNICO EM GUIA DE TURISMO NACIONAL E REGIONAL",
+        "CURSO TÉCNICO EM GUIA DE TURISMO REGIONAL",
+        "CURSO TÉCNICO EM INFORMÁTICA PARA INTERNET",
+        "CURSO TÉCNICO EM LOGÍSTICA",
+        "CURSO TÉCNICO EM MARKETING",
+        "CURSO TÉCNICO EM MECÂNICA",
+        "CURSO TÉCNICO EM MEIO AMBIENTE",
+        "CURSO TÉCNICO EM MINERAÇÃO",
+        "CURSO TÉCNICO EM RECURSOS HUMANOS",
+        "CURSO TÉCNICO EM REDES DE COMPUTADORES",
+        "CURSO TÉCNICO EM SECRETARIA ESCOLAR",
+        "CURSO TÉCNICO EM SECRETARIADO",
+        "CURSO TÉCNICO EM SEGURANÇA DO TRABALHO",
+        "CURSO TÉCNICO EM SERVIÇOS JURÍDICOS",
+        "CURSO TÉCNICO EM SERVIÇOS PÚBLICOS",
+        "CURSO TÉCNICO EM TRANSAÇÕES IMOBILIÁRIAS",
+        "CURSO TÉCNICO EM VENDAS",
+        "CURSO TÉCNICO EM VIGILÂNCIA EM SAÚDE",
+        "ESPECIALIZAÇÃO EM GUIA EM ATRATIVO TURÍSTICO NATURAL",
+        "ESPECIALIZAÇÃO EM INFORMAÇÃO E DOCUMENTAÇÃO",
+        "ESPECIALIZAÇÃO TÉCNICA EM GESTÃO DE ARQUIVOS E BIBLIOTECA",
+      ],
+      color: "bg-[#dc2626]",
+      description: "Formação técnica completa com reconhecimento MEC",
+    },
+    {
+      title: "Graduação Licenciatura",
+      icon: School,
+      slug: "graduacao-licenciatura",
+      courses: [
+        "ANDRAGOGIA",
+        "ARTES VISUAIS",
+        "CIÊNCIAS BIOLÓGICAS",
+        "CIÊNCIAS DA RELIGIÃO",
+        "CIÊNCIAS SOCIAIS",
+        "COMPUTAÇÃO E INFORMÁTICA",
+        "EDUCAÇÃO ESPECIAL",
+        "EDUCAÇÃO FÍSICA",
+        "FILOSOFIA",
+        "FÍSICA",
+        "GEOGRAFIA",
+        "HISTÓRIA",
+        "LETRAS ESPANHOL",
+        "LETRAS INGLÊS",
+        "LETRAS LÍNGUA PORTUGUESA E LIBRAS",
+        "LETRAS PORTUGUÊS",
+        "LETRAS PORTUGUÊS E ESPANHOL",
+        "LETRAS PORTUGUÊS E FRANCÊS",
+        "LETRAS PORTUGUÊS E INGLÊS",
+        "MATEMÁTICA",
+        "PEDAGOGIA",
+        "PSICOPEDAGOGIA",
+        "QUÍMICA",
+        "SOCIOLOGIA",
+        "TURISMO",
+      ],
+      color: "bg-[#7c3aed]",
+      description: "Licenciatura para formar educadores qualificados",
+    },
+    {
+      title: "Graduação Segunda Licenciatura",
+      icon: UserCheck,
+      slug: "graduacao-segunda-licenciatura",
+      courses: [
+        "ARTES VISUAIS",
+        "CIÊNCIAS DA RELIGIÃO",
+        "EDUCAÇÃO ESPECIAL",
+        "EDUCAÇÃO FÍSICA",
+        "FILOSOFIA",
+        "GEOGRAFIA",
+        "HISTÓRIA",
+        "LETRAS",
+        "LETRAS – PORTUGUÊS E ESPANHOL",
+        "LETRAS – PORTUGUÊS E INGLÊS",
+        "LETRAS – PORTUGUÊS E LIBRAS",
+        "MATEMÁTICA",
+        "PEDAGOGIA",
+        "SOCIOLOGIA",
+      ],
+      color: "bg-[#059669]",
+      description: "Segunda licenciatura em tempo reduzido",
+    },
+    {
+      title: "Graduação Formação Pedagógica",
+      icon: Users2,
+      slug: "graduacao-formacao-pedagogica",
+      courses: [
+        "ARTES VISUAIS",
+        "CIÊNCIAS DA RELIGIÃO",
+        "EDUCAÇÃO ESPECIAL",
+        "EDUCAÇÃO FÍSICA",
+        "FILOSOFIA",
+        "GEOGRAFIA",
+        "HISTÓRIA",
+        "LETRAS",
+        "LETRAS – PORTUGUÊS E ESPANHOL",
+        "LETRAS – PORTUGUÊS E INGLÊS",
+        "LETRAS – PORTUGUÊS E LIBRAS",
+        "MATEMÁTICA",
+        "PEDAGOGIA",
+        "SOCIOLOGIA",
+      ],
+      color: "bg-[#ea580c]",
+      description: "Habilite-se para lecionar com excelência",
     },
     {
       title: "Graduação",
       icon: GraduationCap,
-      courses: ["Engenharia de Software", "Nutrição", "Psicopedagogia", "Administração"],
-      color: "bg-[#F5A623]",
+      slug: "graduacao-bacharelado",
+      courses: [
+        "ADMINISTRAÇÃO",
+        "ADMINISTRAÇÃO PÚBLICA",
+        "ARQUIVOLOGIA",
+        "ARTES VISUAIS",
+        "BIBLIOTECONOMIA",
+        "BIOMEDICINA",
+        "CIÊNCIA DA COMPUTAÇÃO",
+        "CIÊNCIA DE DADOS E INTELIGÊNCIA ARTIFICIAL",
+        "CIÊNCIAS CONTÁBEIS",
+        "CIÊNCIAS DA NATUREZA",
+        "CIÊNCIAS ECONÔMICAS",
+        "CIÊNCIAS EXATAS",
+        "CIÊNCIAS HUMANAS",
+        "CIÊNCIAS IMOBILIÁRIAS",
+        "CIÊNCIAS POLÍTICAS",
+        "CIÊNCIAS SOCIAIS",
+        "ECONOMIA",
+      ],
+      color: "bg-[#8b5cf6]",
+      description: "Graduação completa com metodologia inovadora",
+    },
+    {
+      title: "Graduação Tecnólogo",
+      icon: Settings,
+      slug: "graduacao-tecnologo",
+      courses: ["AGENTE COMUNITÁRIO DE SAÚDE", "AGRONEGÓCIOS", "ANÁLISE E DESENVOLVIMENTO DE SISTEMAS"],
+      color: "bg-[#0891b2]",
+      description: "Especialização tecnológica em foco",
     },
     {
       title: "Pós-Graduação",
       icon: Award,
-      courses: ["Direito Digital", "Saúde Coletiva", "Tecnologia da Informação", "Gestão"],
-      color: "bg-[#0A4D8C]",
+      slug: "pos-graduacao",
+      courses: ["AGRONEGÓCIO", "COMUNICAÇÃO E DESIGN", "DIREITO"],
+      color: "bg-[#7c2d12]",
+      description: "Especialize-se e destaque-se no mercado",
     },
     {
       title: "Cursos Livres",
       icon: BookOpen,
-      courses: ["Marketing Digital", "Psicologia", "Design Gráfico", "Idiomas"],
-      color: "bg-[#37AADD]",
-    },
-    {
-      title: "EJA",
-      icon: Users,
-      courses: ["Módulo Administrativo", "Marketing", "Matemática", "Português"],
-      color: "bg-[#F5A623]",
+      slug: "cursos-livres",
+      courses: ["ADMINISTRAÇÃO", "BELEZA", "COMUNICAÇÃO E VENDAS"],
+      color: "bg-[#16a34a]",
+      description: "Aprenda sem limites com flexibilidade total",
     },
   ]
 
@@ -103,32 +286,32 @@ export default function InstitutoCadudaLanding() {
     {
       name: "Maria Silva",
       course: "Marketing Digital",
-      photo: "/placeholder.svg?height=80&width=80",
       text: "O Instituto Caduda transformou minha carreira! O suporte é excepcional e os professores são muito qualificados.",
+      color: "bg-[#2563eb]",
     },
     {
       name: "João Santos",
       course: "Técnico em Administração",
-      photo: "/placeholder.svg?height=80&width=80",
       text: "Excelente metodologia de ensino. Consegui me formar e já estou trabalhando na área. Recomendo!",
+      color: "bg-[#dc2626]",
     },
     {
       name: "Ana Costa",
       course: "Graduação em Nutrição",
-      photo: "/placeholder.svg?height=80&width=80",
       text: "A flexibilidade do EAD me permitiu conciliar estudos com trabalho. Hoje sou uma nutricionista realizada!",
+      color: "bg-[#7c3aed]",
     },
     {
       name: "Carlos Oliveira",
       course: "Pós-Graduação em Direito",
-      photo: "/placeholder.svg?height=80&width=80",
       text: "Professores experientes e conteúdo atualizado. O Instituto Caduda é referência em educação de qualidade.",
+      color: "bg-[#059669]",
     },
     {
       name: "Lucia Ferreira",
       course: "Cuidador de Idosos",
-      photo: "/placeholder.svg?height=80&width=80",
       text: "Curso muito prático e humanizado. Me preparou completamente para atuar na área com segurança e competência.",
+      color: "bg-[#ea580c]",
     },
   ]
 
@@ -160,17 +343,27 @@ export default function InstitutoCadudaLanding() {
     },
   ]
 
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
-  }
+  // Auto-scroll para depoimentos
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+    }, 4000) // Muda a cada 4 segundos
 
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-  }
+    return () => clearInterval(interval)
+  }, [testimonials.length])
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
     setMobileMenuOpen(false)
+  }
+
+  // Função para obter iniciais do nome
+  const getInitials = (name: string) => {
+    return name
+      .split(" ")
+      .map((word) => word[0])
+      .join("")
+      .toUpperCase()
   }
 
   return (
@@ -276,19 +469,6 @@ export default function InstitutoCadudaLanding() {
                   Fale com um Consultor
                 </Button>
               </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              <img
-                src="/placeholder.svg?height=500&width=600"
-                alt="Ensino à Distância"
-                className="w-full h-auto rounded-2xl shadow-2xl"
-              />
             </motion.div>
           </div>
         </div>
@@ -431,22 +611,34 @@ export default function InstitutoCadudaLanding() {
                   <div className={`${category.color} p-6 text-white`}>
                     <div className="flex items-center space-x-3 mb-4">
                       <category.icon className="h-8 w-8" />
-                      <h3 className="text-2xl font-bold">{category.title}</h3>
+                      <div>
+                        <h3 className="text-xl font-bold">{category.title}</h3>
+                        <p className="text-sm opacity-90">{category.description}</p>
+                      </div>
                     </div>
                   </div>
                   <CardContent className="p-6">
-                    <ul className="space-y-3">
-                      {category.courses.map((course, idx) => (
+                    <ul className="space-y-3 max-h-48 overflow-y-auto">
+                      {category.courses.slice(0, 8).map((course, idx) => (
                         <li key={idx} className="flex items-center space-x-2">
                           <CheckCircle className="h-4 w-4 text-[#37AADD] flex-shrink-0" />
-                          <span className="text-gray-700">{course}</span>
+                          <span className="text-gray-700 text-sm">{course}</span>
                         </li>
                       ))}
+                      {category.courses.length > 8 && (
+                        <li className="text-center pt-2">
+                          <span className="text-[#37AADD] text-sm font-medium">
+                            +{category.courses.length - 8} cursos adicionais
+                          </span>
+                        </li>
+                      )}
                     </ul>
-                    <Button className="w-full mt-6 bg-[#0A4D8C] hover:bg-[#0A4D8C]/90">
-                      Ver Todos os Cursos
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    <Link href={`/cursos/${category.slug}`}>
+                      <Button className="w-full mt-6 bg-[#0A4D8C] hover:bg-[#0A4D8C]/90">
+                        Ver Todos os Cursos
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -507,7 +699,7 @@ export default function InstitutoCadudaLanding() {
         </div>
       </section>
 
-      {/* Carrossel de Depoimentos */}
+      {/* Carrossel de Depoimentos - Auto Scroll */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
@@ -530,11 +722,12 @@ export default function InstitutoCadudaLanding() {
               transition={{ duration: 0.5 }}
               className="bg-[#F7F7F7] rounded-2xl p-8 text-center"
             >
-              <img
-                src={testimonials[currentTestimonial].photo || "/placeholder.svg"}
-                alt={testimonials[currentTestimonial].name}
-                className="w-20 h-20 rounded-full mx-auto mb-6 object-cover"
-              />
+              {/* Avatar com iniciais */}
+              <div
+                className={`w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center text-white font-bold text-2xl ${testimonials[currentTestimonial].color}`}
+              >
+                {getInitials(testimonials[currentTestimonial].name)}
+              </div>
               <div className="flex justify-center mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="h-5 w-5 text-[#F5A623] fill-current" />
@@ -544,20 +737,6 @@ export default function InstitutoCadudaLanding() {
               <h4 className="text-xl font-semibold text-[#0A4D8C]">{testimonials[currentTestimonial].name}</h4>
               <p className="text-[#37AADD] font-medium">{testimonials[currentTestimonial].course}</p>
             </motion.div>
-
-            {/* Navigation Buttons */}
-            <button
-              onClick={prevTestimonial}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#0A4D8C] text-white p-3 rounded-full hover:bg-[#0A4D8C]/90 transition-colors"
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </button>
-            <button
-              onClick={nextTestimonial}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#0A4D8C] text-white p-3 rounded-full hover:bg-[#0A4D8C]/90 transition-colors"
-            >
-              <ChevronRight className="h-6 w-6" />
-            </button>
 
             {/* Dots Indicator */}
             <div className="flex justify-center mt-8 space-x-2">
@@ -661,7 +840,7 @@ export default function InstitutoCadudaLanding() {
                     </div>
                     <div>
                       <p className="font-semibold text-[#0A4D8C]">Telefone</p>
-                      <p className="text-gray-600">(79) 99999-9999</p>
+                      <p className="text-gray-600">+55 79 8836-7709</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -796,17 +975,27 @@ export default function InstitutoCadudaLanding() {
               <img
                 src="/logo-instituto-caduda.png"
                 alt="Instituto Caduda"
-                className="h-12 w-auto brightness-0 invert"
+                className="h-12 w-auto brightness-0 invert mb-6"
               />
               <p className="text-blue-200 mb-6 leading-relaxed">
                 Há mais de 30 anos transformando vidas através da educação de qualidade. Oferecemos cursos presenciais e
                 EAD com metodologia inovadora e suporte completo.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="bg-[#37AADD] p-3 rounded-lg hover:bg-[#37AADD]/80 transition-colors">
+                <a
+                  href="https://www.facebook.com/institutocaduda"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#37AADD] p-3 rounded-lg hover:bg-[#37AADD]/80 transition-colors"
+                >
                   <Facebook className="h-5 w-5" />
                 </a>
-                <a href="#" className="bg-[#37AADD] p-3 rounded-lg hover:bg-[#37AADD]/80 transition-colors">
+                <a
+                  href="https://www.instagram.com/institutocaduda/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#37AADD] p-3 rounded-lg hover:bg-[#37AADD]/80 transition-colors"
+                >
                   <Instagram className="h-5 w-5" />
                 </a>
                 <a href="#" className="bg-[#37AADD] p-3 rounded-lg hover:bg-[#37AADD]/80 transition-colors">
@@ -859,7 +1048,7 @@ export default function InstitutoCadudaLanding() {
                   <strong>E-mail:</strong> contato@institutocaduda.com.br
                 </p>
                 <p>
-                  <strong>Telefone:</strong> (79) 99999-9999
+                  <strong>Telefone:</strong> +55 79 8836-7709
                 </p>
               </div>
             </div>
@@ -867,8 +1056,8 @@ export default function InstitutoCadudaLanding() {
 
           <div className="border-t border-blue-800 mt-12 pt-8 text-center">
             <p className="text-blue-200">
-              © 2024 Instituto Caduda. Todos os direitos reservados. | Desenvolvido com ❤️ para transformar vidas através
-              da educação.
+              © 2025 Instituto Caduda. Todos os direitos reservados. | Desenvolvido para transformar vidas através da
+              educação.
             </p>
           </div>
         </div>
